@@ -1,0 +1,19 @@
+{
+  "name": "iris-polymer-time-bomb",
+  "version": "1.0.0",
+  "description": "0.1.0",
+  "main": "iris-time-bomb.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sdk-group/iris-polymer-time-bomb.git"
+  },
+  "author": "SS",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sdk-group/iris-polymer-time-bomb/issues"
+  },
+  "homepage": "https://github.com/sdk-group/iris-polymer-time-bomb#readme"
+}
