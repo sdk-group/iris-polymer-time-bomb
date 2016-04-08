@@ -1,0 +1,46 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="iris-time-bomb">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <iris-shared-entities namespace="timezone" key="offset" value="{{offset}}"></iris-shared-entities>
+    <iris-shared-entities namespace="timezone" key="name" value="{{timezone}}"></iris-shared-entities>
+  </template>
+  <script>
+    Polymer({
+      is: 'iris-time-bomb',
+      properties: {
+        hour: {
+          type: Number,
+          value: 0
+        },
+        minute: {
+          type: Number,
+          value: 0
+        },
+        time: {
+          type: Number,
+          computed: "_setTime(hour,minute,timezone, offset)"
+        }
+      },
+      _setTime(hour, minute, timezone, offset) {
+        let now = moment(Date.now() - offset).tz(timezone);
+        let detonation = moment(Date.now() - offset).tz(timezone).hour(hour).minute(minute);
+        if (detonation.format('X') <= now.format('X')) detonation.add(1, 'days');
+
+        let timer = detonation.format('x') - now.format('x');
+        console.log('<Timebomb> It will blow in', moment.duration(timer).humanize());
+
+        this.tid && clearTimeout(this.tid);
+        this.tid = setTimeout(() => {
+          console.log('Boom! You dead.');
+          location.reload();
+        }, timer);
+      }
+    });
+  </script>
+</dom-module>
